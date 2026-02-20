@@ -1,9 +1,7 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const Nav = () => {
-  const { pathname } = useLocation();
-
   return (
     <nav
       className="navbar is-light is-fixed-top is-mobile has-shadow"
@@ -11,18 +9,23 @@ export const Nav = () => {
     >
       <div className="container">
         <div className="navbar-brand">
-          <Link
+          <NavLink
             to="/"
-            className={`navbar-item ${pathname === '/' ? 'is-active' : ''}`}
+            end
+            className={({ isActive }) =>
+              `navbar-item${isActive ? ' is-active' : ''}`
+            }
           >
             Home
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/tabs"
-            className={`navbar-item ${pathname.startsWith('/tabs') ? 'is-active' : ''}`}
+            className={({ isActive }) =>
+              `navbar-item${isActive ? ' is-active' : ''}`
+            }
           >
             Tabs
-          </Link>
+          </NavLink>
         </div>
       </div>
     </nav>
